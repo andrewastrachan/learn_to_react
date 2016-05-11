@@ -1,6 +1,6 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
-    Tabs = require('./tabs')
+    Tabs = require('./tabs/tabs')
 
 var Widgets = React.createClass({
   render: function() {
