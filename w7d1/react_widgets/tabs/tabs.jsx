@@ -26,4 +26,4 @@ var Tabs = React.createClass({
   }
 });
 
-module.exports = Tabs
+module.exports = Tabs;

@@ -1,7 +1,8 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
     Tabs = require('./tabs/tabs'),
-    Autocomplete = require('./autocomplete/autocomplete')
+    Autocomplete = require('./autocomplete/autocomplete'),
+    WeatherClock = require('./weather_clock/weather_clock')
 
 var Widgets = React.createClass({
   render: function() {
@@ -9,6 +10,7 @@ var Widgets = React.createClass({
       <div>
         <Tabs tabs={this.props.tabData} />
         <Autocomplete searchItems={this.props.searchItems} />
+        <WeatherClock />
       </div>
     )
   }

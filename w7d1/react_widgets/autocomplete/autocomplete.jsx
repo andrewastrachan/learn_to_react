@@ -31,4 +31,4 @@ var Autocomplete = React.createClass({
   }
 });
 
-module.exports = Autocomplete
+module.exports = Autocomplete;
