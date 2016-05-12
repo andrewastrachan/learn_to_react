@@ -1,6 +1,7 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
-    Tabs = require('./tabs/tabs')
+    Tabs = require('./tabs/tabs'),
+    Autocomplete = require('./autocomplete/autocomplete')
 
 var Widgets = React.createClass({
   render: function() {
@@ -9,7 +10,20 @@ var Widgets = React.createClass({
       {title: 'tab 2', content: 'tab 2 content'},
       {title: 'tab 3', content: 'tab 3 content'}
     ]
-    return <Tabs tabs={tabData} />
+
+    var searchItems = [
+      {name: 'Andrew Strachan'},
+      {name: 'Ben Whitley'},
+      {name: 'Christian Davis'},
+      {name: 'Edward McDonald'}
+    ]
+
+    return (
+      <div>
+        <Tabs tabs={tabData} />
+        <Autocomplete searchItems={searchItems} />
+      </div>
+    )
   }
 });
 
