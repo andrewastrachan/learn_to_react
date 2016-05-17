@@ -5,7 +5,7 @@ var React = require('react'),
 
 var Game = React.createClass({
   getInitialState: function() {
-    return {board: Minesweeper.board}
+    return {game: new Minesweeper.Board(10, 10)}
   },
 
   updateGame: function() {
@@ -13,7 +13,7 @@ var Game = React.createClass({
   },
 
   render: function() {
-    return <Board board={this.state.board} updateGameCallback={this.updateGame}/>
+    return <Board board={this.state.game.grid} updateGameCallback={this.updateGame}/>
   }
 });
 

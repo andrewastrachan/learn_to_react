@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.tile {
+  padding: 2px;
+  border: 1px solid red;
+  min-width: 20px;
+  min-height: 20px;
+}
