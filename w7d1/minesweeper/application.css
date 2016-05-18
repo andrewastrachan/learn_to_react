@@ -14,10 +14,8 @@
   min-width: 20px;
   min-height: 20px;
   background-color: #C2BFC2;
-  border-top: 3px solid #F5F2F6;
-  border-bottom: 3px solid #747174;
-  border-left: 3px solid #FBF9FB;
-  border-right: 3px solid #777478;
+  border: 3px solid lightgray;
+  border-style: outset;
   text-align: center;
   font-weight: bolder;
 }
