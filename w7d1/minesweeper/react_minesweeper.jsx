@@ -5,15 +5,17 @@ var React = require('react'),
 
 var Game = React.createClass({
   getInitialState: function() {
-    return {game: new Minesweeper.Board(10, 10)}
+    game = new Minesweeper.Board(10, 10)
+    return {board: new Minesweeper.Board(10, 10)}
   },
 
-  updateGame: function() {
-    //Updates the board state
+  updateGame: function(tile, flagging) {
+    flagging ? tile.toggleFlag() : tile.explore()
+    this.setState({board: this.state.board})
   },
 
   render: function() {
-    return <Board board={this.state.game.grid} updateGameCallback={this.updateGame}/>
+    return <Board board={this.state.board} updateGameCallback={this.updateGame}/>
   }
 });
 

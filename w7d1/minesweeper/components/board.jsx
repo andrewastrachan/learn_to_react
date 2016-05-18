@@ -6,7 +6,7 @@ var Board = React.createClass({
     return (
       <div className='board'>
         {
-          this.props.board.map(function(row, rowIdx) {
+          this.props.board.grid.map(function(row, rowIdx) {
             return (
               <div className='row'>
                 {
