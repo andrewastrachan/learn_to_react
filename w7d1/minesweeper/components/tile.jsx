@@ -9,7 +9,7 @@ var Tile = React.createClass({
 
   render: function() {
     var tileIndicator
-    var tileClass
+    var tileClass = ''
     var tile = this.props.tile
     if (tile.explored) {
       var bombedNeighbors = tile.neighbors().filter(function(t)
@@ -17,14 +17,14 @@ var Tile = React.createClass({
       ).length
 
       tileIndicator = bombedNeighbors || ' '
-      tileClass = 'tile__explored'
+      tileClass = tileClass + ' tile__explored'
     } else if (tile.flagged) {
       tileIndicator = 'F'
     } else if (tile.bombed) {
       tileIndicator = '*'
     }
 
-    return <div className={'tile ' + tileClass}   onClick={this.handleClick}>{tileIndicator}</div>
+    return <div className={'tile' + tileClass}   onClick={this.handleClick}>{tileIndicator}</div>
   }
 });
 
