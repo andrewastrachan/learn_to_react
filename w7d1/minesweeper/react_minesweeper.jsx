@@ -15,11 +15,15 @@ var Game = React.createClass({
     this.setState({board: this.state.board})
   },
 
+  restartGame: function() {
+    this.setState(this.getInitialState())
+  },
+
   render: function() {
     return(
       <div>
         <Board board={this.state.board} updateGameCallback={this.updateGame}/>
-        <Modal board={this.state.board}/>
+        <Modal board={this.state.board} restartGameCallback={this.restartGame}/>
       </div>
     )
   }

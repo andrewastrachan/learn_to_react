@@ -38,12 +38,17 @@
   padding: 10px;
   background-color: lightgray;
   display: none;
+  border: 3px solid gray;
+  border-style: outset;
 }
 
 .modal--visible {
   display: block;
   animation: modal-drop 100ms linear;
 }
+
+.modal__content {padding: 20px 50px;}
+.modal__button  {float: right;}
 
 @keyframes modal-drop {
   from {top: -10%;}
