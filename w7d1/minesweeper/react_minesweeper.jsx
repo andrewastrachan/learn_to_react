@@ -1,7 +1,8 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
     Minesweeper = require('./minesweeper'),
-    Board = require('./components/board')
+    Board = require('./components/board'),
+    Modal = require('./components/modal')
 
 var Game = React.createClass({
   getInitialState: function() {
@@ -15,7 +16,12 @@ var Game = React.createClass({
   },
 
   render: function() {
-    return <Board board={this.state.board} updateGameCallback={this.updateGame}/>
+    return(
+      <div>
+        <Board board={this.state.board} updateGameCallback={this.updateGame}/>
+        <Modal board={this.state.board}/>
+      </div>
+    )
   }
 });
 

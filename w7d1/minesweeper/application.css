@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 .row {
@@ -25,3 +29,25 @@
   border: 1px solid #8F9291;
   padding: 4px;
 }
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: lightgray;
+  display: none;
+}
+
+.modal--visible {
+  display: block;
+  animation: modal-drop 100ms linear;
+}
+
+@keyframes modal-drop {
+  from {top: -10%;}
+  to {top: 50%;}
+}
+
+

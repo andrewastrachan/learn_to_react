@@ -10,7 +10,7 @@ var Board = React.createClass({
             return (
               <div className='row'>
                 {
-                  row.map(function(tile, tileIdx) {
+                    row.map(function(tile, tileIdx) {
                     return <Tile tile={tile} updateGameCallback={this.props.updateGameCallback} location={[rowIdx, tileIdx]}/>
                   }.bind(this))
                 }
