@@ -6,8 +6,7 @@ var React = require('react'),
 
 var Game = React.createClass({
   getInitialState: function() {
-    game = new Minesweeper.Board(10, 10)
-    return {board: new Minesweeper.Board(10, 10)}
+    return {board: new Minesweeper.Board(30, 100)}
   },
 
   updateGame: function(tile, flagging) {
