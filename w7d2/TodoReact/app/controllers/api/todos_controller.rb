@@ -12,11 +12,13 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    render json: Todo.update_attributes!(todo_params).to_json
+    todo = Todo.find(params[:id])
+    todo.update_attributes!(todo_params)
+    render json: todo.to_json
   end
 
   def destroy
-    render json: Todo.destroy!.to_json
+    render json: Todo.find(params[:id]).destroy!.to_json
   end
 
   protected

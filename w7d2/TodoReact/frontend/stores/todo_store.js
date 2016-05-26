@@ -1,6 +1,6 @@
 var _todos = [];
 var _callbacks = [];
-var _apiBase = 'http://localhost:3000/api/todos.json'
+var _apiBase = 'http://localhost:3000/api/todos'
 
 var TodoStore = {
   all: function() {
@@ -9,10 +9,9 @@ var TodoStore = {
 
   fetch: function() {
     $.ajax({
-      url: _apiBase,
+      url: _apiBase + '.json',
       success: function(todos) {
         _todos = todos
-        return _todos;
       },
       error: function(error) {
         alert('error during fetch')
@@ -24,11 +23,10 @@ var TodoStore = {
   create: function(todo) {
     $.ajax({
       type: 'POST',
-      url: _apiBase,
+      url: _apiBase + '.json',
       data: {todo: todo},
       success: function(todo) {
         _todos.push(todo);
-        return todo;
       },
       error: function(error) {
         alert('error during create')
@@ -37,14 +35,40 @@ var TodoStore = {
     })
   },
 
-  destroy: function() {
-    debugger
-    //AJAX to destroy TODO, remove from array after success
+  destroy: function(todo) {
+    $.ajax({
+      type: 'DELETE',
+      url: _apiBase + '/' + todo.id + '.json',
+      data: {todo: todo},
+      success: function(todo) {
+        var idx = _todos.findIndex(function(item) {return item.id===todo.id})
+        if (idx !== -1) {
+          _todos.splice(idx, 1)
+        }
+      },
+      error: function(error) {
+        alert('error during create')
+        console.log(error)
+      }
+    })
   },
 
-  toggleDone: function() {
-    debugger
-    //AJAX to finish TODO, an update to finish a TODO
+  toggleDone: function(todo) {
+    $.ajax({
+      type: 'PATCH',
+      url: _apiBase + '/' + todo.id + '.json',
+      data: {todo: {done: !todo.done}},
+      success: function(todo) {
+        var idx = _todos.findIndex(function(item) {return item.id===todo.id})
+        if (idx!==1) {
+          _todos[idx] = todo
+        }
+      },
+      error: function(error) {
+        alert('error during update')
+        console.log(error)
+      }
+    })
   },
 
   changed: function() {
@@ -58,7 +82,10 @@ var TodoStore = {
   },
 
   removeChangedEventHandeler: function(callback) {
-    _callbacks.splice(_callbacks.indexOf(callback), 1)
+    var idx = _callbacks.indexOf(callback)
+    if (idx !== -1) {
+      _callbacks.splice(_callbacks.indexOf(callback), 1)
+    }
   },
 };
 
