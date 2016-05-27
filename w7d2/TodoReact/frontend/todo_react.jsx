@@ -10,7 +10,7 @@ var TodoReact = React.createClass({
     return (
         <div>
           <TodoList todoStore={this.props.todoStore} />
-          <TodoForm />
+          <TodoForm todoStore={this.props.todoStore} />
         </div>
       )
   }
