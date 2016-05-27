@@ -12,6 +12,7 @@ var TodoStore = {
       url: _apiBase + '.json',
       success: function(todos) {
         _todos = todos
+        TodoStore.changed()
       },
       error: function(error) {
         alert('error during fetch')
@@ -27,6 +28,7 @@ var TodoStore = {
       data: {todo: todo},
       success: function(todo) {
         _todos.push(todo);
+        TodoStore.changed()
       },
       error: function(error) {
         alert('error during create')
@@ -44,6 +46,7 @@ var TodoStore = {
         var idx = _todos.findIndex(function(item) {return item.id===todo.id})
         if (idx !== -1) {
           _todos.splice(idx, 1)
+          TodoStore.changed()
         }
       },
       error: function(error) {
@@ -62,6 +65,7 @@ var TodoStore = {
         var idx = _todos.findIndex(function(item) {return item.id===todo.id})
         if (idx!==1) {
           _todos[idx] = todo
+          TodoStore.changed()
         }
       },
       error: function(error) {
