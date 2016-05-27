@@ -22,13 +22,11 @@ var TodoList = React.createClass({
   render: function() {
     return (
       <div>
-        <ul>
-          {
-            this.state.todos.map(function(todo) {
-              return <TodoListItem todo={todo} key={todo.id}/>
-            })
-          }
-        </ul>
+        {
+          this.state.todos.map(function(todo) {
+            return <TodoListItem todo={todo} key={todo.id}/>
+          })
+        }
       </div>
     )
   }

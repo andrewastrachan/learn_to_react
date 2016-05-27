@@ -4,8 +4,8 @@ var TodoListItem = React.createClass({
   render: function() {
     return(
         <div>
-          <li>{this.props.todo.title}</li>
-          <li>{this.props.todo.body}</li>
+          <div>{this.props.todo.title}</div>
+          <div>{this.props.todo.body}</div>
         </div>
       )
   }

@@ -1,11 +1,17 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
     TodoStore = require('./stores/todo_store'),
-    TodoList = require('./components/todo_list')
+    TodoList = require('./components/todo_list'),
+    TodoForm = require('./components/todo_form')
 
 var TodoReact = React.createClass({
   render: function() {
-    return <TodoList todoStore={this.props.todoStore} />
+    return (
+        <div>
+          <TodoList todoStore={this.props.todoStore} />
+          <TodoForm />
+        </div>
+      )
   }
 })
 
