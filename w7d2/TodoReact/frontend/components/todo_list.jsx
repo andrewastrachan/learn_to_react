@@ -24,8 +24,8 @@ var TodoList = React.createClass({
       <div>
         {
           this.state.todos.map(function(todo) {
-            return <TodoListItem todo={todo} key={todo.id}/>
-          })
+            return <TodoListItem todo={todo} todoStore={this.props.todoStore} key={todo.id}/>
+          }.bind(this))
         }
       </div>
     )
