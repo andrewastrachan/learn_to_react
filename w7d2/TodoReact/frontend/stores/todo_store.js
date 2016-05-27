@@ -8,11 +8,12 @@ var TodoStore = {
   },
 
   fetch: function() {
+    var that = this
     $.ajax({
       url: _apiBase + '.json',
       success: function(todos) {
         _todos = todos
-        TodoStore.changed()
+        that.changed()
       },
       error: function(error) {
         alert('error during fetch')
@@ -22,13 +23,14 @@ var TodoStore = {
   },
 
   create: function(todo) {
+    var that = this
     $.ajax({
       type: 'POST',
       url: _apiBase + '.json',
       data: {todo: todo},
       success: function(todo) {
         _todos.push(todo);
-        TodoStore.changed()
+        that.changed()
       },
       error: function(error) {
         alert('error during create')
@@ -38,6 +40,7 @@ var TodoStore = {
   },
 
   destroy: function(todo) {
+    var that = this
     $.ajax({
       type: 'DELETE',
       url: _apiBase + '/' + todo.id + '.json',
@@ -46,7 +49,7 @@ var TodoStore = {
         var idx = _todos.findIndex(function(item) {return item.id===todo.id})
         if (idx !== -1) {
           _todos.splice(idx, 1)
-          TodoStore.changed()
+          that.changed()
         }
       },
       error: function(error) {
@@ -57,16 +60,15 @@ var TodoStore = {
   },
 
   toggleDone: function(todo) {
+    var that = this
+    var done = !todo.done
     $.ajax({
       type: 'PATCH',
       url: _apiBase + '/' + todo.id + '.json',
-      data: {todo: {done: !todo.done}},
-      success: function(todo) {
-        var idx = _todos.findIndex(function(item) {return item.id===todo.id})
-        if (idx!==1) {
-          _todos[idx] = todo
-          TodoStore.changed()
-        }
+      data: {todo: {done: done}},
+      success: function() {
+        todo.done = done
+        that.changed()
       },
       error: function(error) {
         alert('error during update')
