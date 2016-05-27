@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    TodoListItem = require('./todo_list_item')
 
 var TodoList = React.createClass({
   getInitialState: function() {
@@ -24,12 +25,7 @@ var TodoList = React.createClass({
         <ul>
           {
             this.state.todos.map(function(todo) {
-              return (
-                <div key={todo.id}>
-                  <li>{todo.title}</li>
-                  <li>{todo.body}</li>
-                </div>
-              )
+              return <TodoListItem todo={todo} key={todo.id}/>
             })
           }
         </ul>
