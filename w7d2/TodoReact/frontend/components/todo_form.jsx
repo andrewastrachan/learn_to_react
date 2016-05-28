@@ -22,10 +22,10 @@ var TodoForm = React.createClass({
   render: function() {
     return (
       <form onSubmit={this.submitForm}>
+        <div>Title:</div>
         <input value={this.state.title} onChange={this.updateTitle} />
-        <div>title: {this.state.title}</div>
+        <div>Body:</div>
         <input value={this.state.body} onChange={this.updateBody} />
-        <div>body: {this.state.body}</div>
         <button to='submit'>Submit</button>
       </form>
     )
