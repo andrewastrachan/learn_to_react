@@ -10,7 +10,7 @@ var TodoStepStore = {
   fetch: function(todoId) {
     var that = this
     $.ajax({
-      url: this.todoStepBaseUrl(todoStep.todoId)
+      url: this.todoStepBaseUrl(todoId),
       success: function(todoSteps) {
         _todoSteps = todoSteps
         that.changed()
@@ -26,8 +26,8 @@ var TodoStepStore = {
     var that = this
     $.ajax({
       type: 'POST',
-      url: this.todoStepBaseUrl(todoStep.todoId),
-      data: {todoStep: todoStep},
+      url: this.todoStepBaseUrl(todoStep.todo_id),
+      data: {todo_step: todoStep},
       success: function(todoStep) {
         _todoSteps.push(todoStep);
         that.changed()
@@ -44,7 +44,7 @@ var TodoStepStore = {
     $.ajax({
       type: 'DELETE',
       url: this.todoStepPutDeleteUrl(todoStep),
-      data: {todoStep: todoStep},
+      data: {todo_step: todoStep},
       success: function(todoStep) {
         var idx = _todoSteps.findIndex(function(item) {return item.id===todoStep.id})
         if (idx !== -1) {
@@ -65,7 +65,7 @@ var TodoStepStore = {
     $.ajax({
       type: 'PATCH',
       url: this.todoStepPutDeleteUrl(todoStep),
-      data: {todoStep: {done: done}},
+      data: {todo_step: {done: done}},
       success: function() {
         todoStep.done = done
         that.changed()
@@ -78,15 +78,15 @@ var TodoStepStore = {
   },
 
   todoStepBase: function(todoId) {
-    _apiBase + '/' + todoId + '/' + 'todo_steps'
+    return _apiBase + '/' + todoId + '/' + 'todo_steps'
   },
 
   todoStepBaseUrl: function(todoId) {
-    _todoStepBase(todoId) + '.json'
+    return this.todoStepBase(todoId) + '.json'
   },
 
   todoStepPutDeleteUrl: function(todoStep) {
-    _todoStepBase(todoStep.todo_id) + '/' + todoStep.id + '.json'
+    return this.todoStepBase(todoStep.todo_id) + '/' + todoStep.id + '.json'
   },
 
   changed: function() {

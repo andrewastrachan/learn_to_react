@@ -24,7 +24,7 @@ class Api::TodoStepsController < ApplicationController
 
   protected
   def todo_step_params
-    params.require(:todo).permit(:body, :done)
+    params.require(:todo_step).permit(:body, :done)
   end
 
   def find_todo
