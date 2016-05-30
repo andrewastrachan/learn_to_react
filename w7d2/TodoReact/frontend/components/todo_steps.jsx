@@ -1,23 +1,22 @@
 var React = require('react'),
-    TodoStep = require('./todo_step'),
-    TodoStepStore = require('../stores/todo_step_store')
+    TodoStep = require('./todo_step')
 
 var TodoSteps = React.createClass({
   getInitialState: function() {
-    return {todoSteps: TodoStepStore.all(this.props.todo.id)}
+    return {todoSteps: this.props.todoStepStore.all(this.props.todo.id)}
   },
 
   componentDidMount: function() {
-    TodoStepStore.addChangedEventHandeler(this.todoStepsChanged)
-    TodoStepStore.fetch(this.props.todo.id)
+    this.props.todoStepStore.addChangedEventHandeler(this.todoStepsChanged)
+    this.props.todoStepStore.fetch(this.props.todo.id)
   },
 
   componentWillUnmount: function() {
-    TodoStepStore.removeChangedEventHandeler(this.todoStepsChanged)
+    this.props.todoStepStore.removeChangedEventHandeler(this.todoStepsChanged)
   },
 
   todoStepsChanged: function() {
-    this.setState({todoSteps: TodoStepStore.all(this.props.todo.id)})
+    this.setState({todoSteps: this.props.todoStepStore.all(this.props.todo.id)})
   },
 
   render: function() {
@@ -25,8 +24,8 @@ var TodoSteps = React.createClass({
       <div>
         {
           this.state.todoSteps.map(function(todoStep, idx) {
-            return <TodoStep key={todoStep.id} idx={idx} todoStep={todoStep}/>
-          })
+            return <TodoStep key={todoStep.id} idx={idx} todoStep={todoStep} todoStepStore={this.props.todoStepStore}/>
+          }.bind(this))
         }
       </div>
     )

@@ -4,7 +4,6 @@ var _apiBase = 'http://localhost:3000/api/todos'
 
 var TodoStepStore = {
   all: function(todoId) {
-    debugger
     return _todoSteps[todoId] || [];
   },
 

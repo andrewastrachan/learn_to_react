@@ -22,10 +22,12 @@ var TodoListItem = React.createClass({
   render: function() {
     return(
         <div>
-          <a href='' onClick={this.toggleVisible}>{this.props.todo.title}</a>
+          <a href='' onClick={this.toggleVisible} className='todo__title'>{this.props.todo.title}</a>
+          <div className='todo__buttons'>
+            <button onClick={this.handleToggleDone}>{this.props.todo.done ? 'Unfinish' : 'Finish'}</button>
+            <button onClick={this.handleDestroy}>Delete</button>
+          </div>
           <TodoDetailView todo={this.props.todo} visible={this.state.visible}/>
-          <button onClick={this.handleToggleDone}>{this.props.todo.done ? 'Unfinish' : 'Finish'}</button>
-          <button onClick={this.handleDestroy}>Delete</button>
         </div>
       )
   }
