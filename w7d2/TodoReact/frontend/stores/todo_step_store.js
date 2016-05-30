@@ -1,0 +1,110 @@
+var _todoSteps = [];
+var _callbacks = [];
+var _apiBase = 'http://localhost:3000/api/todos'
+
+var TodoStepStore = {
+  all: function() {
+    return _todoSteps;
+  },
+
+  fetch: function(todoId) {
+    var that = this
+    $.ajax({
+      url: this.todoStepBaseUrl(todoStep.todoId)
+      success: function(todoSteps) {
+        _todoSteps = todoSteps
+        that.changed()
+      },
+      error: function(error) {
+        alert('error during fetch')
+        console.log(error)
+      }
+    });
+  },
+
+  create: function(todoStep) {
+    var that = this
+    $.ajax({
+      type: 'POST',
+      url: this.todoStepBaseUrl(todoStep.todoId),
+      data: {todoStep: todoStep},
+      success: function(todoStep) {
+        _todoSteps.push(todoStep);
+        that.changed()
+      },
+      error: function(error) {
+        alert('error during create')
+        console.log(error)
+      }
+    })
+  },
+
+  destroy: function(todoStep) {
+    var that = this
+    $.ajax({
+      type: 'DELETE',
+      url: this.todoStepPutDeleteUrl(todoStep),
+      data: {todoStep: todoStep},
+      success: function(todoStep) {
+        var idx = _todoSteps.findIndex(function(item) {return item.id===todoStep.id})
+        if (idx !== -1) {
+          _todoSteps.splice(idx, 1)
+          that.changed()
+        }
+      },
+      error: function(error) {
+        alert('error during create')
+        console.log(error)
+      }
+    })
+  },
+
+  toggleDone: function(todoStep) {
+    var that = this
+    var done = !todoStep.done
+    $.ajax({
+      type: 'PATCH',
+      url: this.todoStepPutDeleteUrl(todoStep),
+      data: {todoStep: {done: done}},
+      success: function() {
+        todoStep.done = done
+        that.changed()
+      },
+      error: function(error) {
+        alert('error during update')
+        console.log(error)
+      }
+    })
+  },
+
+  todoStepBase: function(todoId) {
+    _apiBase + '/' + todoId + '/' + 'todo_steps'
+  },
+
+  todoStepBaseUrl: function(todoId) {
+    _todoStepBase(todoId) + '.json'
+  },
+
+  todoStepPutDeleteUrl: function(todoStep) {
+    _todoStepBase(todoStep.todo_id) + '/' + todoStep.id + '.json'
+  },
+
+  changed: function() {
+    _callbacks.forEach(function(callback) {
+      callback();
+    });
+  },
+
+  addChangedEventHandeler: function(callback) {
+    _callbacks.push(callback)
+  },
+
+  removeChangedEventHandeler: function(callback) {
+    var idx = _callbacks.indexOf(callback)
+    if (idx !== -1) {
+      _callbacks.splice(_callbacks.indexOf(callback), 1)
+    }
+  },
+};
+
+module.exports = TodoStepStore;
