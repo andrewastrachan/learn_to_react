@@ -1,10 +1,11 @@
-var _todoSteps = [];
+var _todoSteps = {};
 var _callbacks = [];
 var _apiBase = 'http://localhost:3000/api/todos'
 
 var TodoStepStore = {
-  all: function() {
-    return _todoSteps;
+  all: function(todoId) {
+    debugger
+    return _todoSteps[todoId] || [];
   },
 
   fetch: function(todoId) {
@@ -12,7 +13,7 @@ var TodoStepStore = {
     $.ajax({
       url: this.todoStepBaseUrl(todoId),
       success: function(todoSteps) {
-        _todoSteps = todoSteps
+        _todoSteps[todoId] = todoSteps
         that.changed()
       },
       error: function(error) {
@@ -29,7 +30,7 @@ var TodoStepStore = {
       url: this.todoStepBaseUrl(todoStep.todo_id),
       data: {todo_step: todoStep},
       success: function(todoStep) {
-        _todoSteps.push(todoStep);
+        _todoSteps[todoStep.todo_id].push(todoStep);
         that.changed()
       },
       error: function(error) {
@@ -46,9 +47,9 @@ var TodoStepStore = {
       url: this.todoStepPutDeleteUrl(todoStep),
       data: {todo_step: todoStep},
       success: function(todoStep) {
-        var idx = _todoSteps.findIndex(function(item) {return item.id===todoStep.id})
+        var idx = _todoSteps[todoStep.todo_id].findIndex(function(item) {return item.id===todoStep.id})
         if (idx !== -1) {
-          _todoSteps.splice(idx, 1)
+          _todoSteps[todoStep.todo_id].splice(idx, 1)
           that.changed()
         }
       },
