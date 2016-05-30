@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160530181745) do
   create_table "todo_steps", force: :cascade do |t|
     t.string   "body"
     t.boolean  "done",       default: false, null: false
+    t.integer  "todo_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

@@ -3,6 +3,7 @@ class CreateTodoSteps < ActiveRecord::Migration
     create_table :todo_steps do |t|
       t.string :body
       t.boolean :done, null: false, default: false
+      t.integer :todo_id
 
       t.timestamps null: false
     end
