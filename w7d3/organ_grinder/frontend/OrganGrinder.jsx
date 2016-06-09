@@ -1,0 +1,1 @@
+ApplicationDispatcher = require('./dispatcher/Dispatcher')
