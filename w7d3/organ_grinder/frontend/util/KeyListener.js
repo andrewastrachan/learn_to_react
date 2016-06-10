@@ -1,10 +1,10 @@
-var KeyMappings = require('../constants/KeyMappings'),
+var KeysToOrganKeys = require('../constants/KeysToOrganKeys'),
     KeyActions  = require('../actions/KeyActions')
 
 $(document).keydown(function(e) {
-  var key = KeyMappings[e.keyCode]
+  var key = KeysToOrganKeys[e.keyCode]
   KeyActions.keyPressed(key)
 }).keyup(function(e) {
-  var key = KeyMappings[e.keyCode]
+  var key = KeysToOrganKeys[e.keyCode]
   KeyActions.keyReleased(key)
 })
