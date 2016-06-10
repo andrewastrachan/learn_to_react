@@ -1,1 +1,1 @@
-module.exports = {97: 'one', 0: 'one'}
+module.exports = {97: 'two', 65: 'one'}
