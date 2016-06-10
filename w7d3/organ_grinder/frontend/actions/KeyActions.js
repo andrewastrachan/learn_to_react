@@ -6,6 +6,13 @@ var KeyActions = {
       actionType: 'KEYPRESSED',
       key: key
     })
+  },
+
+  keyReleased: function(key) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'KEYRELEASED',
+      key: key
+    })
   }
 }
 
