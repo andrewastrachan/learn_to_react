@@ -1,29 +1,15 @@
-var ApplicationDispatcher = require('./dispatcher/Dispatcher'),
-    Note                  = require('./util/Note'),
-    ORGANKEYS             = require('./constants/OrganKeys'),
-    KeyStore              = require('./stores/KeyStore'),
-    React                 = require('react'),
+var React                 = require('react'),
     ReactDOM              = require('react-dom'),
+    ApplicationDispatcher = require('./dispatcher/Dispatcher'),
+    ORGANKEYS             = require('./constants/OrganKeys'),
     OrganKey              = require('./components/OrganKey')
 
 require('./util/KeyListener')
 
 var OrganGrinder = React.createClass({
-  getInitialState: function() {
-    return {keys: this.props.KeyStore.all()}
-  },
-
-  componentDidMount: function() {
-    this.props.KeyStore.addListener(this.keysChanged)
-  },
-
-  keysChanged: function() {
-    this.setState({keys: this.props.KeyStore.all()})
-  },
-
   render: function() {
     var organKeys = this.props.ORGANKEYS.map(function(key) {
-      return <OrganKey key={key} keyName={key} keys={this.state.keys} />
+      return <OrganKey key={key} keyName={key} />
     }.bind(this))
 
     return (
@@ -38,7 +24,7 @@ var OrganGrinder = React.createClass({
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    <OrganGrinder KeyStore={KeyStore} ORGANKEYS={ORGANKEYS}/>,
+    <OrganGrinder ORGANKEYS={ORGANKEYS}/>,
     document.getElementById('content')
   )
 })

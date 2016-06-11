@@ -1,1 +1,1 @@
-module.exports = {one: 6100, two: 6400, three: 6700, four: 7000}
+module.exports = {one: 500, two: 600, three: 700, four: 800}
