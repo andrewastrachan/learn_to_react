@@ -2,7 +2,8 @@ var React                 = require('react'),
     ReactDOM              = require('react-dom'),
     ApplicationDispatcher = require('./dispatcher/Dispatcher'),
     ORGANKEYS             = require('./constants/OrganKeys'),
-    OrganKey              = require('./components/OrganKey')
+    OrganKey              = require('./components/OrganKey'),
+    Recorder              = require('./components/Recorder')
 
 require('./util/KeyListener')
 
@@ -17,6 +18,7 @@ var OrganGrinder = React.createClass({
               <ul>
                 {organKeys}
               </ul>
+              <Recorder/>
             </div>
             )
   }

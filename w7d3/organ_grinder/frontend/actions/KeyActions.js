@@ -13,6 +13,13 @@ var KeyActions = {
       actionType: 'KEYRELEASED',
       key: key
     })
+  },
+
+  playbackDataChanged: function(keys) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'PLAYBACKDATACHANGED',
+      keys: keys
+    })
   }
 }
 
