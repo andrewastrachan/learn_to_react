@@ -17,14 +17,15 @@ var Recorder = React.createClass({
     }
   },
 
-  startRecording: function() {
-    this.setState({isRecording: true, track: this.state.track})
-    this.state.track.startRecording(KeyStore.all())
-  },
+  toggleRecording: function() {
+    var isRecording = !this.state.isRecording
 
-  stopRecording: function() {
-    this.setState({isRecording: false, track: this.state.track})
-    this.state.track.stopRecording()
+    this.setState({
+      isRecording: isRecording,
+      track: this.state.track
+    })
+
+    isRecording ? this.state.track.startRecording(KeyStore.all()) : this.state.track.stopRecording()
   },
 
   playRecording: function() {
@@ -35,10 +36,8 @@ var Recorder = React.createClass({
     return (
               <div>
                 <h3>Recorder</h3>
-                <button onClick={this.startRecording}>Start</button>
-                <button onClick={this.stopRecording}>Stop</button>
+                <button onClick={this.toggleRecording}>{this.state.isRecording ? 'Stop Rec' : 'Start Rec'}</button>
                 <button onClick={this.playRecording}>Play</button>
-                <div>Recording: {this.state.isRecording ? 'recording' : 'stopped'}</div>
               </div>
             )
   }

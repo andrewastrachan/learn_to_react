@@ -33,11 +33,11 @@ KeyStore.__setKeys = function(keys) {
 KeyStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case 'KEYPRESSED':
-      KeyStore.__addKey(payload.key);
-      break;
+      KeyStore.__addKey(payload.key)
+      break
     case 'KEYRELEASED':
-      KeyStore.__removeKey(payload.key);
-      break;
+      KeyStore.__removeKey(payload.key)
+      break
     case 'PLAYBACKDATACHANGED':
       KeyStore.__setKeys(payload.keys)
   }

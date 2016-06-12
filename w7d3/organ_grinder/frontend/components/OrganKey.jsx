@@ -8,7 +8,11 @@ var OrganKey = React.createClass({
   getInitialState: function() {
     var noteFreq = OrganKeysToNotes[this.props.keyName]
     var keys = KeyStore.all()
-    return {keys: keys, note: new Note(noteFreq), playing: keys.includes(this.props.keyName)}
+    return ({
+        keys: keys,
+        note: new Note(noteFreq),
+        playing: keys.includes(this.props.keyName)
+      })
   },
 
   componentDidMount: function() {
@@ -17,16 +21,16 @@ var OrganKey = React.createClass({
 
   keysChanged: function() {
     var keys = KeyStore.all()
-    this.setState({keys: keys, note: this.state.note, playing: keys.includes(this.props.keyName)})
+    this.setState({
+      keys: keys,
+      note: this.state.note,
+      playing: keys.includes(this.props.keyName)
+    })
     this.state.playing ? this.state.note.start() : this.state.note.stop()
   },
 
   render: function() {
-    return (
-      <div>
-        <li>{this.props.keyName}, playing: {this.state.keys.includes(this.props.keyName) ? 'true' : 'false'}</li>
-      </div>
-    )
+    return <li>{this.props.keyName}, playing: {this.state.playing.toString()}</li>
   }
 })
 

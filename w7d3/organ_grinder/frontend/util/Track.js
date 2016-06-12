@@ -7,15 +7,21 @@ var Track = function(options) {
 
 Track.prototype.startRecording = function(notes) {
   this.startTime = Date.now()
-  this.roll = [{time: this.startTime - Date.now(), notes}]
-}
-
-Track.prototype.addNotes = function(notes) {
-  this.roll.push({time: Date.now() - this.startTime, notes: notes})
+  this.roll = [{
+    time: Date.now() - this.startTime,
+    notes: notes
+  }]
 }
 
 Track.prototype.stopRecording = function() {
   this.addNotes([])
+}
+
+Track.prototype.addNotes = function(notes) {
+  this.roll.push({
+    time: Date.now() - this.startTime,
+    notes: notes
+  })
 }
 
 Track.prototype.play = function () {
