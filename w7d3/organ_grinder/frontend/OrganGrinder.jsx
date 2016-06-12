@@ -4,6 +4,7 @@ var React                 = require('react'),
     ORGANKEYS             = require('./constants/OrganKeys'),
     OrganKey              = require('./components/OrganKey'),
     Recorder              = require('./components/Recorder')
+    JukeBox               = require('./components/JukeBox')
 
 require('./util/KeyListener')
 
@@ -19,6 +20,7 @@ var OrganGrinder = React.createClass({
                 {organKeys}
               </ul>
               <Recorder/>
+              <JukeBox />
             </div>
             )
   }

@@ -6,18 +6,22 @@ var _tracks = []
 var TrackStore = new Store(ApplicationDispatcher)
 
 TrackStore.all = function() {
-  _tracks.slice()
+  return _tracks.slice()
 },
 
-TrackStore.addTrack = function(track) {
-  _tracks.push(track)
+TrackStore.__addTrack = function(track) {
+  if (_tracks.indexOf(track) == -1) {
+    _tracks.push(track)
+  }
   TrackStore.__emitChange()
 },
 
 TrackStore.__onDispatch = function(payload) {
   switch (payload.actionType) {
     case 'ADDTRACK':
-      TrackStore.addTrack(payload.track)
+      TrackStore.__addTrack(payload.track)
       break
   }
 }
+
+module.exports = TrackStore

@@ -1,9 +1,9 @@
 var ApplicationDispatcher = require('../dispatcher/Dispatcher'),
     Store = require('flux/utils').Store
 
-var KeyStore = new Store(ApplicationDispatcher)
-
 var _keys = []
+
+var KeyStore = new Store(ApplicationDispatcher)
 
 KeyStore.all = function() {
   return _keys.slice()
