@@ -1,5 +1,6 @@
 var React = require('react'),
-    TrackStore = require('../stores/TrackStore')
+    TrackStore = require('../stores/TrackStore'),
+    TrackPlayer = require('../components/TrackPlayer')
 
 var JukeBox = React.createClass({
   getInitialState: function() {
@@ -16,7 +17,7 @@ var JukeBox = React.createClass({
 
   render: function() {
     var tracks = this.state.tracks.map(function(track) {
-      return <li>{track.name}</li>
+      return <TrackPlayer track={track} />
     })
     return(
       <div>
