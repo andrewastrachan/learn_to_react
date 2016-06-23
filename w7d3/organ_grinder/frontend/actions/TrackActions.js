@@ -6,6 +6,13 @@ var TrackActions = {
       actionType: 'ADDTRACK',
       track: track
     })
+  },
+
+  tracksLoaded: function(tracks) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'TRACKSLOADED',
+      tracks: tracks
+    })
   }
 }
 

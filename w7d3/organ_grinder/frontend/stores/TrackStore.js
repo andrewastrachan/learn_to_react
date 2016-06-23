@@ -16,10 +16,18 @@ TrackStore.__addTrack = function(track) {
   TrackStore.__emitChange()
 },
 
+TrackStore.__setTracks = function(tracks) {
+  _tracks = tracks
+  TrackStore.__emitChange()
+},
+
 TrackStore.__onDispatch = function(payload) {
   switch (payload.actionType) {
     case 'ADDTRACK':
       TrackStore.__addTrack(payload.track)
+      break
+    case 'TRACKSLOADED':
+      TrackStore.__setTracks(payload.tracks.tracks)
       break
   }
 }

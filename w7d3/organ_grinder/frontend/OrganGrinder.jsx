@@ -4,7 +4,8 @@ var React                 = require('react'),
     ORGANKEYS             = require('./constants/OrganKeys'),
     OrganKey              = require('./components/OrganKey'),
     Recorder              = require('./components/Recorder')
-    JukeBox               = require('./components/JukeBox')
+    JukeBox               = require('./components/JukeBox'),
+    TrackApiUtil          = require('./util/TrackApiUtil')
 
 require('./util/KeyListener')
 
