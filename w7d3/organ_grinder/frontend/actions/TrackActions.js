@@ -8,6 +8,27 @@ var TrackActions = {
     })
   },
 
+  trackAdded: function(track) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'TRACKADDED',
+      track: track
+    })
+  },
+
+  deleteTrack: function(track) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'DELETETRACK',
+      track: track
+    })
+  },
+
+  trackDeleted: function(track) {
+    ApplicationDispatcher.dispatch({
+      actionType: 'TRACKDELETED',
+      track: track
+    })
+  },
+
   tracksLoaded: function(tracks) {
     ApplicationDispatcher.dispatch({
       actionType: 'TRACKSLOADED',
