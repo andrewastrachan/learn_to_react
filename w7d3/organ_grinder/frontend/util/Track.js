@@ -1,6 +1,7 @@
 var KeyActions = require('../actions/KeyActions')
 
 var Track = function(options) {
+  this.id   = options.id   || null
   this.name = options.name || 'untitled'
   this.roll = options.roll || []
 }

@@ -1,6 +1,7 @@
 var ApplicationDispatcher = require('../dispatcher/Dispatcher'),
     Store = require('flux/utils').Store,
-    TrackApiUtil = require('../util/TrackApiUtil')
+    TrackApiUtil = require('../util/TrackApiUtil'),
+    Track = require('../util/Track')
 
 var _tracks = []
 
@@ -11,16 +12,17 @@ TrackStore.all = function() {
 },
 
 TrackStore.__addTrack = function(track) {
-  if (_tracks.indexOf(track) == -1) {TrackApiUtil.create(track)}
+  TrackApiUtil.create(track)
   TrackStore.__emitChange()
 },
 
 TrackStore.__trackAdded = function(track) {
-  if (_tracks.indexOf(track) == -1) {_tracks.push(track)}
+  _tracks.push(track)
   TrackStore.__emitChange()
 },
 
 TrackStore.__deleteTrack = function(track) {
+  debugger
   if (_tracks.indexOf(track) !== -1) {TrackApiUtil.destroy(track)}
   TrackStore.__emitChange()
 },
@@ -32,7 +34,7 @@ TrackStore.__trackDeleted = function(track) {
 },
 
 TrackStore.__setTracks = function(tracks) {
-  _tracks = tracks
+  _tracks = tracks.map(function(track) {return new Track(track)})
   TrackStore.__emitChange()
 },
 

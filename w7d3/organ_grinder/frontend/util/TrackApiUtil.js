@@ -1,4 +1,5 @@
-var TrackActions  = require('../actions/TrackActions')
+var TrackActions  = require('../actions/TrackActions'),
+    Track         = require('./Track')
 
 var TrackApiUtil = {
   index: function() {
@@ -6,6 +7,7 @@ var TrackApiUtil = {
     $.ajax({
       url: this._trackBaseUrl,
       success: function(tracks) {
+        debugger
         TrackActions.tracksLoaded(tracks)
       },
       error: function(error) {
@@ -15,6 +17,7 @@ var TrackApiUtil = {
   },
 
   create: function(track) {
+    debugger
     var that = this
     $.ajax({
       method: 'POST',
@@ -22,9 +25,10 @@ var TrackApiUtil = {
       url: this._trackBaseUrl,
       success: function(track) {
         debugger
+        TrackActions.trackAdded(track)
       },
       error: function(error) {
-        debugger
+        console.log(error)
       }
     });
   },
@@ -36,10 +40,10 @@ var TrackApiUtil = {
       data: {id: track.id},
       url: this._trackBaseUrl,
       success: function(track) {
-        debugger
+        TrackActions.trackDeleted(track)
       },
       error: function(error) {
-        debugger
+        console.log(error)
       }
     });
   },

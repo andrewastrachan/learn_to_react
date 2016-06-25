@@ -12,7 +12,7 @@ class Api::TracksController < ApplicationController
 
   def create
     track = Track.create!(track_params)
-    render json: {track: @track}
+    render json: @track.to_json
   end
 
   def destroy
@@ -21,7 +21,7 @@ class Api::TracksController < ApplicationController
 
   private
   def track_params
-    params.require(:track).permit(:name, :roll)
+    params.require(:track).permit(:name, :roll => [:time, notes: []])
   end
 
   def find_track
