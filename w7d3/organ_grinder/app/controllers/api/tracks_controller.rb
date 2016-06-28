@@ -1,5 +1,5 @@
 class Api::TracksController < ApplicationController
-  # respond_to :json
+  respond_to :json
   before_action :find_track, only: [:show, :destroy]
 
   def index
@@ -16,12 +16,14 @@ class Api::TracksController < ApplicationController
   end
 
   def destroy
-    render json: {track: @track} if @track.destroy
+    if @track.destroy
+      render json: {track: @track}
+    end
   end
 
   private
   def track_params
-    params.require(:track).permit(:name, :roll => [:time, notes: []])
+    params.require(:track).permit(:name, :start_time, :roll => [:time, notes: []])
   end
 
   def find_track

@@ -38,7 +38,11 @@ var Recorder = React.createClass({
   },
 
   saveRecording: function() {
-    TrackActions.addTrack({name: this.state.track.name, roll: this.state.track.roll.slice()})
+    TrackActions.addTrack({
+                            name: this.state.track.name,
+                            roll: this.state.track.roll.slice(),
+                            start_time: this.state.track.startTime
+                          })
   },
 
   newRecording: function() {

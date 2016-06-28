@@ -22,7 +22,6 @@ TrackStore.__trackAdded = function(track) {
 },
 
 TrackStore.__deleteTrack = function(track) {
-  debugger
   if (_tracks.indexOf(track) !== -1) {TrackApiUtil.destroy(track)}
   TrackStore.__emitChange()
 },

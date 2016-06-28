@@ -1,6 +1,7 @@
 var React = require('react'),
     TrackStore = require('../stores/TrackStore'),
-    TrackPlayer = require('../components/TrackPlayer')
+    TrackPlayer = require('../components/TrackPlayer'),
+    TrackApiUtil = require('../util/TrackApiUtil')
 
 var JukeBox = React.createClass({
   getInitialState: function() {
@@ -9,6 +10,7 @@ var JukeBox = React.createClass({
 
   componentDidMount: function() {
     TrackStore.addListener(this.tracksChanged)
+    TrackApiUtil.index()
   },
 
   tracksChanged: function() {
@@ -21,7 +23,7 @@ var JukeBox = React.createClass({
     })
     return(
       <div>
-        <h3>Saved(not really) Tracks</h3>
+        <h3>Saved Tracks</h3>
         <ul>
           {tracks}
         </ul>

@@ -7,7 +7,6 @@ var TrackApiUtil = {
     $.ajax({
       url: this._trackBaseUrl,
       success: function(tracks) {
-        debugger
         TrackActions.tracksLoaded(tracks)
       },
       error: function(error) {
@@ -17,14 +16,12 @@ var TrackApiUtil = {
   },
 
   create: function(track) {
-    debugger
     var that = this
     $.ajax({
       method: 'POST',
       data: {track: track},
       url: this._trackBaseUrl,
       success: function(track) {
-        debugger
         TrackActions.trackAdded(track)
       },
       error: function(error) {
@@ -38,7 +35,7 @@ var TrackApiUtil = {
     $.ajax({
       method: 'DELETE',
       data: {id: track.id},
-      url: this._trackBaseUrl,
+      url: this._trackBaseUrl + '/' + track.id,
       success: function(track) {
         TrackActions.trackDeleted(track)
       },
