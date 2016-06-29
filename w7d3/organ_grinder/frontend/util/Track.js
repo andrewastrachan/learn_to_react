@@ -36,7 +36,7 @@ Track.prototype.play = function () {
     if (!!playData) {
       var timeElapsed = Date.now() - playbackStartTime
       if (timeElapsed > playData.time) {
-        KeyActions.playbackDataChanged(playData.notes)
+        KeyActions.playbackDataChanged(playData.notes || [])
         currentNote ++
       }
     } else {
