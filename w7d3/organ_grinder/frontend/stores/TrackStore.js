@@ -17,7 +17,7 @@ TrackStore.__addTrack = function(track) {
 },
 
 TrackStore.__trackAdded = function(track) {
-  _tracks.push(track)
+  _tracks.push(new Track(track))
   TrackStore.__emitChange()
 },
 
@@ -27,8 +27,8 @@ TrackStore.__deleteTrack = function(track) {
 },
 
 TrackStore.__trackDeleted = function(track) {
-  var idx = _tracks.indexOf(track)
-  if (idx !== -1) {TrackStore.splice(idx, 1)}
+  var idx = _tracks.findIndex(function(t) {return t.id === track.id})
+  if (idx !== -1) {_tracks.splice(idx, 1)}
   TrackStore.__emitChange()
 },
 

@@ -9,6 +9,7 @@ var TrackActions = {
   },
 
   trackAdded: function(track) {
+    debugger
     ApplicationDispatcher.dispatch({
       actionType: 'TRACKADDED',
       track: track

@@ -22,6 +22,7 @@ var TrackApiUtil = {
       data: {track: track},
       url: this._trackBaseUrl,
       success: function(track) {
+        debugger
         TrackActions.trackAdded(track)
       },
       error: function(error) {
@@ -37,7 +38,7 @@ var TrackApiUtil = {
       data: {id: track.id},
       url: this._trackBaseUrl + '/' + track.id,
       success: function(track) {
-        TrackActions.trackDeleted(track)
+        TrackActions.trackDeleted(track.track)
       },
       error: function(error) {
         console.log(error)
