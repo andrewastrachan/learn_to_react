@@ -16,9 +16,7 @@ class Api::TracksController < ApplicationController
   end
 
   def destroy
-    if @track.destroy
-      render json: {track: @track}
-    end
+    render json: {track: @track} if @track.destroy
   end
 
   private
