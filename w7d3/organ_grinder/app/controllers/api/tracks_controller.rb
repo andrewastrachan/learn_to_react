@@ -11,8 +11,7 @@ class Api::TracksController < ApplicationController
   end
 
   def create
-    track = Track.create!(track_params)
-    render json: track.to_json
+    render json: Track.create!(track_params).to_json
   end
 
   def destroy
