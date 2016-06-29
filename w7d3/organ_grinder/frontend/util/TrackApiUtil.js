@@ -22,7 +22,6 @@ var TrackApiUtil = {
       data: {track: track},
       url: this._trackBaseUrl,
       success: function(track) {
-        debugger
         TrackActions.trackAdded(track)
       },
       error: function(error) {
